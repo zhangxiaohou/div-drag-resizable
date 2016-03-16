@@ -1,0 +1,163 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+		"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>快递单模板</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="../Public/css/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../Public/css/icon.css" />
+
+<link rel="stylesheet" type="text/css" href="../Public/css/fileuploader.css" />
+<link rel="stylesheet" type="text/css" href="../Public/css/common.css" />
+
+<link rel="stylesheet" type="text/css" href="../Public/css/products.css" />
+<link rel="stylesheet" type="text/css" href="../Public/css/adddepozit.css" />
+
+<script src="../Public/js/jquery.js" type="text/javascript"></script>
+
+<script src="../Public/js/jquery.easyui.min1.js" type="text/javascript"></script>
+<script src="../Public/js/easyui-lang-chi.js" type="text/javascript"></script>
+<script src="../Public/js/common.js" type="text/javascript"></script>
+<script src="../Public/js/chi_14_35.js" type="text/javascript"></script>
+<script src="../Public/js/wizard.js" type="text/javascript"></script>
+<script src="../Public/js/fileuploader.js" type="text/javascript"></script>
+<script src="../Public/js/toastmessager.js" type="text/javascript"></script>
+<script src="../Public/js/move.js" type="text/javascript"></script>
+
+<style type="text/css">
+  .dd-demo{
+    width:60px;
+    height:60px;
+    border:2px solid #d3d3d3;
+    position:absolute;
+  }
+  .proxy{
+    border:1px dotted #333;
+    width:60px;
+    height:60px;
+    text-align:center;
+    background:#fafafa;
+  }
+  #dd1{
+    background:#E0ECFF;
+    left:20px;
+    top:20px;
+  }
+  #dd2{
+    background:#8DB2E3;
+    left:100px;
+    top:20px;
+  }
+  #dd3{
+    background:#FBEC88;
+    left:180px;
+    top:20px;
+  }
+</style>
+</head>
+<body>
+
+  <div id="postModel_add" iconCls="icon-add"
+		style=" padding-bottom: 30px; overflow: auto; ">
+    <table style="width:100%" border="0">
+	  <tr>
+	    <td width="83">选择模板:</td>
+	    <td width="469"><select id="postModelSelecet" style="width:150px"></select>&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td>模板名称：</td>
+	    <td><input type="text" style="width:150px" id="model_name"/>&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td>快递公司：</td>
+	    <td><select name="select" id="logistics_company" style="width:150px">
+	    </select>    </td>
+	  </tr>
+	  <tr>
+	    <td height="21">运单图片：</td>
+	    <td><div id="add_post_img" name="new_img"></div></td>
+	  </tr>
+	  <tr>
+	    <td>模板尺寸：</td>
+	    <td><select name="select2" id="select" style="width:100px">
+		<option name="自定义尺寸" value="1">自定义尺寸</option>
+		<option name="300*200" value="2">300×200</option>
+		<option name="200*150" value="3">200×150</option>
+	    </select>
+	      宽：<input type="text" name="width" id="width" style="width:80px" value="300" />
+	      mm
+	    高：<input type="text" name="height" id="height" style="width:80px" value="200" />
+	    mm  <input type="button" name="reset_size" onclick="reset_model()"  value="重设模板"> </td>
+	  </tr>
+	  <tr>
+	    <td>选择打印项：</td>
+	    <td>&nbsp;
+        <table id="checked_tab"  style="width:100%" border="0">
+	        <tr>
+	          <td style="width:25%"><label>
+	            <input name="tid"  type="checkbox" class="tab-checked" checked="checked" />
+	          订单编号</label></td>
+	          <td style="width:25%"><label>
+	            <input name="sender_name" type="checkbox" class="tab-checked" checked="checked"/>
+	          发件人姓名</label></td>
+	          <td style="width:25%"><label>
+	            <input name="sender_phone" type="checkbox" class="tab-checked" checked="checked"/>
+	          发件人电话</label></td>
+	          <td style="width:25%"><label>
+	            <input name="ps" type="checkbox" class="tab-checked" checked="checked"/>
+	          备注</label></td>
+	        </tr>
+	        <tr>
+	          <td><label>
+	            <input name="sender_company" type="checkbox" class="tab-checked" checked="checked"/>
+	            发件人公司
+	          </label></td>
+	          <td><label>
+	            <input name="sender_addr" type="checkbox" class="tab-checked" checked="checked"/>
+	          发件人地址</label></td>
+	          <td><label>
+	            <input name="sender_zip" type="checkbox" class="tab-checked" checked="checked"/>
+	          发件人邮编</label></td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><label>
+	            <input name="receiver_name" type="checkbox" class="tab-checked" checked="checked"/>
+	            收件人姓名
+	          </label></td>
+	          <td><label>
+	            <input name="receiver_phone" type="checkbox" class="tab-checked" checked="checked"/>
+	          收件人电话</label></td>
+	          <td><label>
+	            <input name="receiver_addr" type="checkbox" class="tab-checked" checked="checked"/>
+	          收件人地址</label></td>
+	          <td>&nbsp;</td>
+	        </tr>
+	        <tr>
+	          <td><label>
+	            <input  name="receiver_zip" type="checkbox" class="tab-checked" checked="checked"/>
+	          收件人邮编</label></td>
+	          <td><label>
+	            <input name="collection_amount" type="checkbox" class="tab-checked"checked="checked"/>
+	          代收金额</label></td>
+	          <td><label>
+	            <input name="cod_code" type="checkbox" class="tab-checked" checked="checked"/>
+	          货到付款物流编号</label></td>
+	          <td>&nbsp;</td>
+	        </tr>
+	      </table></td>
+	  </tr>
+	  <tr>
+	    <td colspan="2"><div id="modelShower"></div></td>
+	  </tr>
+	</table>
+        <div id="post_model_div" title="快递单模板设计" style="width:90%;min-height:400px;border:2px solid #000000;background-color:white">
+				<img id="post_backimg" style="position:relative;z-index:1"> </img></div>
+
+</body>
+</html>
